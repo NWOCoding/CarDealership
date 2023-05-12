@@ -25,8 +25,27 @@ public class UserInterface{
             scanner.nextLine();
 
             switch (choice) {
+                case 1:
+                    displayVehicles();
+                    break;
+                case 2:
+                    addVehicle();
+                    break;
+                case 3:
+                    quit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice Please try again");
 
             }
         }
     }
+
+               private void displayVehicles() {
+                   System.out.println("Inventory: ");
+                   for (Vehicle vehicle : dealership.getInventory()) {
+                       System.out.println(vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel() + " -$" + vehicle.getPrice());
+
+                   }
+               }
 }
