@@ -48,4 +48,15 @@ public class UserInterface{
 
                    }
                }
+
+               private void addVehicle() {
+                   System.out.println("Enter VIN: ");
+                   int vin = scanner.nextInt();
+                   scanner.nextLine();
+
+                   System.out.println("Enter year: ");
+                   int year = scanner.nextInt();
+                   scanner.nextLine();
+
+               }
 }
