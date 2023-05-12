@@ -77,7 +77,13 @@ public class UserInterface{
                    System.out.println("Enter price:");
                     double price = scanner.nextDouble();
                     scanner.nextLine();
-                    
 
+                   Vehicle vehicle = new Vehicle(vin, year,make,model,vehicleType,color,odometer,price );
+                   dealership.getInventory().add(vehicle);
+
+                   DealershipFileManager dealershipFileManager = new DealershipFileManager();
+                   dealershipFileManager.saveDealership(dealership);
+
+                   System.out.println("Vehicle added to inventory");
                }
 }
