@@ -62,6 +62,11 @@ public class Dealership {
               vehicle.setColor(color);
               vehicle.setOdometer(odometer);
               vehicle.setPrice(price);
+
+              DealershipFileManager dealershipFileManager = new DealershipFileManager();
+              dealershipFileManager.saveDealership(this);
+
+              break;
           }
         }
     }
