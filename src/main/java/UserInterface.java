@@ -58,5 +58,26 @@ public class UserInterface{
                    int year = scanner.nextInt();
                    scanner.nextLine();
 
+                   System.out.println("Enter make: ");
+                   String make = scanner.nextLine();
+
+                   System.out.println("Enter model: ");
+                   String model = scanner.nextLine();
+
+                   System.out.println("Enter vehicle type: ");
+                   String vehicleType = scanner.nextLine();
+
+                   System.out.println("Enter color: ");
+                   String color = scanner.nextLine();
+
+                   System.out.println("Enter odometer: ");
+                   int odometer = scanner.nextInt();
+                   scanner.nextLine();
+
+                   System.out.println("Enter price:");
+                    double price = scanner.nextDouble();
+                    scanner.nextLine();
+                    
+
                }
 }
