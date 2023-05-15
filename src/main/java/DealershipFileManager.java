@@ -1,26 +1,52 @@
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class DealershipFileManager {
-    public void saveDealership(Dealership dealership) {
+    private String inventory;
+
+    public DealershipFileManager(String filename) {
+        this.inventory = filename;
+    }
+
+    public Dealership loadDealership() {
+        Dealership dealership = new Dealership();
+
         try {
-            FileWriter fileWriter = new FileWriter("dealership.csv");
-            CSVWriter csvWriter = new CSVWriter(fileWriter);
+            FileReader fileReader = new FileReader(inventory);
+            CSVReader csvReader = new CSVReader(fileReader);
 
+            csvReader.skip(1);
 
-            String[] header = {"VIN", "Year", "Make", "Model", "Type", "Color", "Odometer", "Price"};
-            csvWriter.writeNext(header);
+            String[] data;
+            while ((data = csvReader.readNext()) != null) {
+                int vin = Integer.parseInt(data[0]);
+                int year = Integer.parseInt(data[1]);
+                String make = data[2];
+                String model = data[3];
+                String type = data[4];
+                String color = data[5];
+                int odometer = Integer.parseInt(data[6]);
+                double price = Double.parseDouble(data[7]);
 
-             for(Vehicle vehicle : dealership.getInventory()) {
-                 String[] data = {String.valueOf(vehicle.getVin()), String.valueOf(vehicle.getYear()), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), String.valueOf(vehicle.getOdometer()), String.valueOf(vehicle.getPrice())};
-                 csvWriter.writeNext(data);
-             }
-
-
-            csvWriter.close();
+                Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, odometer, price);
+                dealership.addVehicle(vehicle);
+            }
+            csvReader.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        return dealership;
+    }
+
+    public void saveDealership(Dealership dealership) {
+        try {
+            FileWriter fileWriter = new FileWriter(inventory);
+            CSVWriter csvWriter = new CSVWriter(fileWriter)
         }
     }
 }
